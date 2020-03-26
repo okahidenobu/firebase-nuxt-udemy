@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "nuxt-firebase-fd016",
+    "production": "nuxt-firebase-fd016"
+  }
+}
