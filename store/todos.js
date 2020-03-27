@@ -21,6 +21,7 @@ export const actions = {
       });
     }
   }),
+
   remove: firestoreAction((context, id) => {
     todosRef.doc(id).delete();
   }),
