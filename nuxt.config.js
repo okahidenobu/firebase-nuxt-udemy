@@ -10,7 +10,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || "",
+    title: process.env.npm_package_name || "Hello Nuxt.js!!",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -42,6 +42,9 @@ export default {
    ** Nuxt.js modules
    */
   modules: ["@nuxtjs/dotenv"],
+  // router: {
+  //   middleware: ["authenticated"]
+  // },
   /*
    ** Build configuration
    */
@@ -57,3 +60,5 @@ export default {
     ]
   }
 };
+
+module.exports = {};

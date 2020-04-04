@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>hi</h1>
     <button v-on:click="googleLogin">googleでログイン</button>
   </div>
 </template>
@@ -9,7 +10,6 @@ import firebase from "firebase";
 
 export default {
   name: "login",
-  components: {},
   asyncData(context) {
     // コンポーネントをロードする前に毎回呼び出されます
     return { name: "Hello, World！！", isLogin: false, userData: null };
