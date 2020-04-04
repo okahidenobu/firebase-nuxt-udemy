@@ -1,4 +1,4 @@
 module.exports = {
   FIREBASE_PROJECT_ID: "",
-  APIKEY: "AIzaSyCJUSuTvmTTWRlwjqLQZ59gED-NWBPxDyY"
+  API_KEY: "AIzaSyCJUSuTvmTTWRlwjqLQZ59gED-NWBPxDyY"
 };
