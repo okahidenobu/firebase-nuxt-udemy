@@ -2,7 +2,7 @@ import firebase from "firebase";
 
 const config = {
   projectId: process.env.FIREBASE_PROJECT_ID,
-  apiKey: process.env.APIKEY,
+  apiKey: process.env.API_KEY,
   authDomain: `${process.env.FIREBASE_PROJECT_ID}.firebaseapp.com`,
   databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`,
   storageBucket: `${process.env.FIREBASE_PROJECT_ID}.appspot.com`

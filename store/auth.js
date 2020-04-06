@@ -6,10 +6,6 @@ export const state = () => ({
   username: ""
 });
 
-export const getters = {
-  isLoggedIn: state => state.status === "loggedIn"
-};
-
 export const actions = {
   gotUser({ commit }, user) {
     commit("setUser", user);

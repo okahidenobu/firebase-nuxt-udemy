@@ -10,22 +10,7 @@ import firebase from "firebase";
 
 export default {
   name: "login",
-  asyncData(context) {
-    // コンポーネントをロードする前に毎回呼び出されます
-    return { name: "Hello, World！！", isLogin: false, userData: null };
-  },
-  mounted: function() {
-    firebase.auth().onAuthStateChanged(user => {
-      // console.log(user);
-      if (user) {
-        this.isLogin = true;
-        this.userData = user;
-      } else {
-        this.isLogin = false;
-        this.userData = null;
-      }
-    });
-  },
+
   methods: {
     googleLogin: function() {
       firebase
@@ -50,19 +35,6 @@ export default {
           var credential = error.credential;
           // ...
           console.log("login errrrrrror");
-        });
-    },
-    googleLogOut: () => {
-      firebase
-        .auth()
-        .signOut()
-        .then(function() {
-          // Sign-out successful.
-          console.log("logout");
-        })
-        .catch(function(error) {
-          // An error happened.
-          console.log("logout errror");
         });
     }
   }
