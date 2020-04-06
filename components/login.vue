@@ -1,7 +1,18 @@
 <template>
   <div>
-    <h1>hi</h1>
+    <div>
+      メール{{ email }}<br />
+      <input type="text" v-model="email" /><br />
+      パスワード{{ password }}<br />
+      <input type="password" v-model="password" /><br />
+      <button v-on:click="onSubmit">ログイン</button>
+    </div>
+
+    <br />
     <button v-on:click="googleLogin">googleでログイン</button>
+    <nuxt-link to="/auth/signUp">
+      <button>新規登録はこちら</button>
+    </nuxt-link>
   </div>
 </template>
 
@@ -12,7 +23,7 @@ export default {
   name: "login",
 
   methods: {
-    googleLogin: function() {
+    googleLogin() {
       firebase
         .auth()
         .signInWithRedirect(new firebase.auth.GoogleAuthProvider())
@@ -35,6 +46,18 @@ export default {
           var credential = error.credential;
           // ...
           console.log("login errrrrrror");
+        });
+    },
+    async onSubmit() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(r => {
+          this.$router.push("/");
+        })
+        .catch(e => {
+          const { code, message } = e;
+          this.error = `${code}\n${message}`;
         });
     }
   }
