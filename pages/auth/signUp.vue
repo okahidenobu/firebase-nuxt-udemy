@@ -1,17 +1,47 @@
 <template>
-  <div>
-    <div>
-      メール{{ email }}<br />
-      <input type="text" v-model="email" /><br />
-      パスワード{{ password }}<br />
-      <input type="password" v-model="password" /><br />
-      <button v-on:click="onSubmit">新規登録</button>
-    </div>
-    <div>
-      <nuxt-link to="/auth/login">ログイン</nuxt-link>
-    </div>
-    {{ error }}
-  </div>
+  <v-app>
+    <v-card width="500" class="mx-auto mt-5">
+      <v-card-title class="display-1">
+        <h1 class="font-weight-light">registration</h1>
+      </v-card-title>
+      <v-card-text>
+        <v-form>
+          <v-text-field
+            label="email"
+            prepend-icon="mdi-email"
+            v-model="email"
+          />
+          <v-text-field
+            label="Password"
+            type="password"
+            prepend-icon="mdi-lock"
+            append-icon="mdi-eye-off"
+            v-model="password"
+          />
+        </v-form>
+      </v-card-text>
+      <v-divider></v-divider>
+      <v-card-actions>
+        <v-btn v-on:click="onSubmit" color="success">register</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn to="/auth/login" color="info">login</v-btn>
+      </v-card-actions>
+    </v-card>
+
+    <!--    debug-->
+    <v-card class="mx-auto mt-10" width="500">
+      <v-card-title>
+        <p class="display-1 text--primary">
+          debugs
+        </p>
+      </v-card-title>
+      <v-card-text class="body-1">
+        <p v-if="email">email : {{ email }}</p>
+        <p v-if="password">password :{{ password }}</p>
+        <p v-if="error">error : {{ error }}</p>
+      </v-card-text>
+    </v-card>
+  </v-app>
 </template>
 
 <script>
@@ -22,24 +52,22 @@ export default {
   data: () => ({
     email: "",
     password: "",
-    name: "",
     error: ""
   }),
   methods: {
-    onSubmit: function() {
+    onSubmit: async function() {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
-        .then(() => {
-          this.name = "";
+        .then(r => {
+          this.email = "";
           this.password = "";
+          console.log(r);
         })
-        .catch(function(e) {
+        .catch(e => {
           this.error = e.message;
         });
     }
   }
 };
 </script>
-
-<style scoped></style>
