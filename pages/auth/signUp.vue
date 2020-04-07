@@ -24,12 +24,23 @@
       <v-card-actions>
         <v-btn v-on:click="onSubmit" color="success">register</v-btn>
         <v-spacer></v-spacer>
-        <v-btn to="/auth/login" color="info">login</v-btn>
+        <v-btn to="/auth/login" color="info">login page</v-btn>
       </v-card-actions>
     </v-card>
+    <v-alert
+      v-if="error"
+      type="error"
+      style="white-space: pre-line"
+      class="mb-6"
+      >{{ error }}
+    </v-alert>
 
     <!--    debug-->
-    <v-card class="mx-auto mt-10" width="500">
+    <v-card
+      v-if="environment === 'development'"
+      class="mx-auto mt-10"
+      width="500"
+    >
       <v-card-title>
         <p class="display-1 text--primary">
           debugs
@@ -52,7 +63,8 @@ export default {
   data: () => ({
     email: "",
     password: "",
-    error: ""
+    error: "",
+    environment: process.env.NODE_ENV
   }),
   methods: {
     onSubmit: async function() {
