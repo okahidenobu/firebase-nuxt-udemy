@@ -48,6 +48,10 @@
               <v-card-actions>
                 <v-btn v-on:click="login" color="info">login</v-btn>
                 <v-spacer></v-spacer>
+                <v-btn v-on:click="googleLogin" color="purple" textcolor="white"
+                  >google
+                </v-btn>
+                <v-spacer></v-spacer>
                 <v-btn to="/auth/signUp" color="success">register</v-btn>
               </v-card-actions>
             </v-card>
@@ -82,6 +86,24 @@ export default {
         .catch(e => {
           const { code, message } = e;
           this.error = `${code}\n${message}`;
+        });
+    },
+    async googleLogin() {
+      firebase
+        .auth()
+        .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then(function(result) {
+          var user = result.user;
+        })
+        .catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+          // ...
         });
     }
   }
